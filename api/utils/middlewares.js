@@ -15,7 +15,7 @@ const authenticate = (req, res, next) => {
     });
   } else {
     return res.status(403).json({
-      error: 'No token provided, must be set on the Authorization Header'
+      error: 'No token provided, must be set on the Authorization Header',
     });
   }
 };
@@ -23,6 +23,15 @@ const authenticate = (req, res, next) => {
 const encryptUserPW = (req, res, next) => {
   const { username, password } = req.body;
   // https://github.com/kelektiv/node.bcrypt.js#usage
+  bcrypt.hash(password, SaltRounds, (err, hash) => {
+    if (err) {
+      res.status(500).json({ message: 'Error occured while hashing pwd', err });
+      return;
+    }
+
+    req.user = { username, password: hash };
+    next();
+  });
   // TODO: Fill this middleware in with the Proper password encrypting, bcrypt.hash()
   // Once the password is encrypted using bcrypt you'll need to set a user obj on req.user with the encrypted PW
   // Once the user is set, call next and head back into the userController to save it to the DB
@@ -40,5 +49,5 @@ const compareUserPW = (req, res, next) => {
 module.exports = {
   authenticate,
   encryptUserPW,
-  compareUserPW
+  compareUserPW,
 };
