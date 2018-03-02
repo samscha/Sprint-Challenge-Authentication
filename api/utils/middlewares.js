@@ -61,7 +61,9 @@ const compareUserPW = (req, res, next) => {
       });
     })
     .catch(err =>
-      res.status(500).json({ message: 'Error finding user.', err }),
+      res
+        .status(500)
+        .json({ message: `Error finding username ${username}.`, err }),
     );
 };
 

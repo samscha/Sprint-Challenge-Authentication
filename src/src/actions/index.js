@@ -29,7 +29,7 @@ export const login = (username, password, history) => {
         localStorage.setItem(appKey, data.token);
         dispatch({ type: AUTH_USER_AUTHENTICATED });
         dispatch({ type: LOGGING_IN_FINISH });
-        history.push('/');
+        history.push('/jokes');
       })
       .catch(err => {
         dispatch(authenticationErr(err));
