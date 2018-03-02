@@ -7,7 +7,9 @@ import Logger from 'redux-logger';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 import reducers from './reducers';
+
 import App from './App';
+import SignIn from './components/signin';
 
 import './styles/css/index.css';
 
@@ -20,6 +22,7 @@ ReactDOM.render(
     <Router>
       <div>
         <Route path="/" component={App} />
+        <Route path="/signin" component={SignIn} />
       </div>
     </Router>
   </Provider>,
