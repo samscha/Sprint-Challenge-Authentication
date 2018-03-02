@@ -9,7 +9,7 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 import reducers from './reducers';
 import App from './App';
 
-import './index.css';
+import './styles/css/index.css';
 
 const createStoreWithMiddleware = applyMiddleware(ReduxThunk, Logger)(
   createStore,
